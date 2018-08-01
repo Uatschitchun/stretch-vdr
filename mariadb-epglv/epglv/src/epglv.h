@@ -17,8 +17,6 @@ Copyright (C) 2013 Jörg Wendel
 #endif
 
 #include <mysql.h>
-#include <m_ctype.h>
-#include <m_string.h>
 
 #include <locale.h>
 #include <stdio.h>
