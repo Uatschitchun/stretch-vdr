@@ -2,10 +2,6 @@ FROM mariadb:10.3
 
 WORKDIR /tmp
 
-RUN mkdir -p epglv/src
-COPY epglv/* epglv/
-COPY epglv/src/* epglv/src/
-
 RUN apt-get update -q \
  && apt-get install -y \
 	locales \
@@ -22,6 +18,10 @@ Run apt-get install -y \
 	zlib1g-dev \
 	libcrypto++-dev \
 	libssl-dev
+
+RUN mkdir -p epglv/src
+COPY epglv/* epglv/
+COPY epglv/src/* epglv/src/
 
 RUN cd /tmp/epglv \
  && make all \
