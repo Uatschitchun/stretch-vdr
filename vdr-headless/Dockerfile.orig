@@ -32,6 +32,7 @@ RUN apt-get update && \
 	vdr-plugin-restfulapi \
 	vdr-plugin-vnsiserver \
 	vdr-plugin-vdrmanager \
+	vdr-plugin-epg2vdr \
 	vdr-plugin-svdrpservice \
 	vdr-plugin-streamdev-server \
 	vdr-plugin-svdrposd \
@@ -49,12 +50,13 @@ RUN groupmod -o -g 666 vdr \
  && install -o vdr -g vdr -d /recordings /vdr/config /vdr/cache
 
 # add configs
-COPY var/lib/vdr/* /var/lib/vdr/
-COPY var/lib/vdr/plugins/streamdev-server/* /var/lib/vdr/plugins/streamdev-server/
-COPY etc/vdr/conf.d/* /etc/vdr/conf.d/
-COPY etc/rsyslog.conf /etc/
+#COPY var/lib/vdr/* /var/lib/vdr/
+#COPY var/lib/vdr/plugins/streamdev-server/* /var/lib/vdr/plugins/streamdev-server/
+#COPY etc/vdr/conf.d/* /etc/vdr/conf.d/
+#COPY etc/rsyslog.conf /etc/
 
 EXPOSE 2004 3000 6419 8002 8008 4010-4020/udp 34890
 VOLUME /recordings  /etc/vdr /vdr/config /vdr/cache
 
-ENTRYPOINT ["/init"]
+#ENTRYPOINT ["/init"]
+ENTRYPOINT ["/bin/bash"]

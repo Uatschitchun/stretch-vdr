@@ -8,9 +8,16 @@ ENV _apt_clean="eval apt-get clean && $_clean"
 
 # Install needed
 RUN apt-get update \
-  && apt-get install -y apt-utils locales \
-  && apt-get install -y tzdata \
+  && apt-get install --no-install-recommends -y \
+	apt-utils \
+	locales \
+	tzdata \
+        software-properties-common \
+        dirmngr \
+        apt-transport-https \
+        gnupg \
   && locale-gen de_DE.UTF-8 \
+  && $_apt_clean
 
 # Set your local timezone
 RUN echo "Europe/Berlin" > /etc/timezone && \
