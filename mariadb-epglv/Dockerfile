@@ -36,10 +36,18 @@ Run apt-get remove -y \
 	zlib1g-dev \
  && apt-get autoremove -y && apt-get clean && apt-get purge && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-
 ENV LANG de_DE.UTF-8
 ENV LANGUAGE de_DE:de
 ENV LC_ALL de_DE.UTF-8
 
 COPY mysqlepgd.cnf /etc/mysql/conf.d/
 COPY mysql-first-time.sql /docker-entrypoint-initdb.d/
+
+VOLUME /var/lib/mysql
+
+#COPY docker-entrypoint.sh /usr/local/bin/
+#RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
+ENTRYPOINT ["docker-entrypoint.sh"]
+
+EXPOSE 3306
+CMD ["mysqld"]
