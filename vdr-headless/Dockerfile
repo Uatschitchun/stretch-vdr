@@ -29,7 +29,7 @@ RUN apt-get update && \
 	vdr-plugin-femon \
 	vdr-plugin-satip \
 	vdr-plugin-live \
-	vdr-plugin-restfulapi \
+#	vdr-plugin-restfulapi \
 	vdr-plugin-vnsiserver \
 	vdr-plugin-vdrmanager \
 	vdr-plugin-epg2vdr \
@@ -50,13 +50,16 @@ COPY rsyslog.sh /etc/services.d/rsyslog/run
 # && install -o vdr -g vdr -d /recordings /vdr/config /vdr/cache
 
 # add configs
-#COPY var/lib/vdr/* /var/lib/vdr/
-#COPY var/lib/vdr/plugins/streamdev-server/* /var/lib/vdr/plugins/streamdev-server/
+COPY var/lib/vdr/* /var/lib/vdr/
+COPY var/lib/vdr/plugins/streamdev-server/* /var/lib/vdr/plugins/streamdev-server/
+COPY var/lib/vdr/plugins/vnsiserver/* /var/lib/vdr/plugins/vnsiserver/
 COPY etc/vdr/conf.d/* /etc/vdr/conf.d/
+COPY etc/vdr/conf.avail/* /etc/vdr/conf.avail/
 COPY etc/rsyslog.conf /etc/
 
-# 8002=restfulapi, 4010-4020/udp=satip, 6419=vdr, 
-EXPOSE 2004 3000 6419 8002 8008 4010-4020/udp 34890
+# 2004=???, 3000=streamdev, 6419=svdrp, 8002=restfulapi, 8008=live, 4010-4020/udp=satip, 34890=vnsiserver
+#EXPOSE 2004 3000 6419 8002 8008 4010-4020/udp 34890
+EXPOSE 2004 3000 6419 8008 4010-4020/udp 34890
 VOLUME /var/lib/video/
 #/etc/vdr /vdr/config /vdr/cache
 
