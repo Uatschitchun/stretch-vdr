@@ -21,10 +21,11 @@ RUN apt-get update \
 
 # Set your local timezone
 RUN echo "Europe/Berlin" > /etc/timezone && \
-    dpkg-reconfigure -f noninteractive tzdata
+	dpkg-reconfigure -f noninteractive tzdata
 
 # fix locale.
-RUN locale-gen de_DE.UTF-8
+RUN locale-gen de_DE de_DE.UTF-8 && \
+	dpkg-reconfigure locales
 ENV LANG de_DE.UTF-8
 ENV LANGUAGE de_DE:de
 ENV LC_ALL de_DE.UTF-8
