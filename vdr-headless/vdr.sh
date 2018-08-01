@@ -21,5 +21,5 @@ chown -R vdr:vdr /var/cache/vdr/
 #cp -a /var/lib/vdr/plugins/epg2vdr/epg.dat /vdr/config/plugins/epg2vdr
 
 # Run vdr
-#exec s6-setuidgid vdr vdr
+exec s6-setuidgid vdr vdr
 
