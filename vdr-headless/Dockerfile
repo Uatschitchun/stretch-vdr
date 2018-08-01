@@ -14,17 +14,11 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 
 
 RUN echo deb https://packages.e-tobi.net/vdr-experimental stretch base vdr-multipatch addons > /etc/apt/sources.list.d/e-tobi.list \
  && echo deb-src https://packages.e-tobi.net/vdr-experimental stretch base vdr-multipatch addons >> /etc/apt/sources.list.d/e-tobi.list \
- && apt-key adv --recv-keys --keyserver keyring.debian.org --recv-keys 041390BC; \
+ && apt-key adv --recv-keys --keyserver keyring.debian.org --recv-keys 041390BC
 
-	{ \
-		echo 'Package: *'; \
-		echo 'Pin: release o=e-tobi.net'; \
-		echo 'Pin-Priority: 1000'; \
-	} > /etc/apt/preferences.d/etobi
-
-#RUN echo Package: * > /etc/apt/preferences.d/etobi \
-# && echo Pin: release o=e-tobi.net >> /etc/apt/preferences.d/etobi \
-# && echo Pin-Priority: 1000 >> /etc/apt/preferences.d/etobi
+RUN echo Package: * > /etc/apt/preferences.d/etobi \
+ && echo Pin: release o=e-tobi.net >> /etc/apt/preferences.d/etobi \
+ && echo Pin-Priority: 1000 >> /etc/apt/preferences.d/etobi
 
 RUN apt-get update && \
 	apt-get install --no-install-recommends -y \
