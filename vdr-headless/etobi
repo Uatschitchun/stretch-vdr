@@ -1,0 +1,3 @@
+Package: *
+Pin: release o=e-tobi.net
+Pin-Priority: 1000
