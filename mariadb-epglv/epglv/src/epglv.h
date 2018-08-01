@@ -13,8 +13,7 @@ Copyright (C) 2013 Jörg Wendel
 #ifdef STANDARD
 # include <string.h>
 #else
-# include <my_global.h>
-# include <my_sys.h>
+# include <mysql.h>
 #endif
 
 #include <mysql.h>
