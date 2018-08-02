@@ -10,7 +10,7 @@ epgd:
     - /var/epgd
 
 database:
-  image: chriszero/mariadb-epglv
+  image: uatschitchun/mariadb-epglv
   ports:
     - 3306:3306
   restart: always
