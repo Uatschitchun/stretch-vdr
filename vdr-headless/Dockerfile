@@ -1,6 +1,7 @@
 FROM uatschitchun/stretch-s6-base
 
 WORKDIR /tmp
+ENV ARCH=amd64
 
 RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 \
  && add-apt-repository 'deb [arch=amd64,i386,ppc64el] http://mirror.23media.de/mariadb/repo/10.3/debian stretch main'
