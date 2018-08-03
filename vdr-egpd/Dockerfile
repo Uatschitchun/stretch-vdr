@@ -10,20 +10,19 @@ RUN apt-get update -q \
  && apt-get install -y --no-install-recommends \
 	build-essential \
 	git \
-	libarchive-dev \
-	zlib1g-dev \
-	libcurl4-nss-dev \
-	libxml2-dev \
-	libxslt1-dev \
-	libmariadb-dev \
-	libmariadb-dev-compat \
-	libjpeg-dev \
-	uuid-dev \
-	libjansson-dev \
-	libimlib2-dev \
-	libpython-dev python-dev \
+	libarchive13 libarchive-dev \
+	zlib1g zlib1g-dev \
+	libcurl3-nss libcurl4-nss-dev \
+	libxml2 libxml2-dev \
+	libxslt1.1 libxslt1-dev \
+	libmariadbclient18 libmariadb-dev libmariadb-dev-compat \
+	libjpeg62-turbo libjpeg-dev \
+	uuid uuid-dev \
+	libjansson4 libjansson-dev \
+	libimlib2 libimlib2-dev \
+	libpython2.7 libpython-dev python-dev \
 	libssl-dev \
-	libmicrohttpd-dev
+	libmicrohttpd12 libmicrohttpd-dev
 
 RUN mkdir -p /usr/lib/mysql/plugin \
  && mkdir -p /config \
