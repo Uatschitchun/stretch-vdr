@@ -10,6 +10,8 @@ RUN apt-get update -q \
  && apt-get install -y --no-install-recommends \
 	build-essential \
 	git \
+	unzip \
+	wget \
 	libarchive13 libarchive-dev \
 	zlib1g zlib1g-dev \
 	libcurl3-nss libcurl4-nss-dev \
@@ -39,7 +41,6 @@ RUN mkdir -p /usr/lib/mysql/plugin \
 
 
 RUN cd /tmp \
- && apt-get install -y wget \
  && wget https://github.com/FrodoVDR/channellogos/archive/master.tar.gz \
  && tar xzf master.tar.gz \
  && mkdir -p /var/epgd/www/channellogos \
