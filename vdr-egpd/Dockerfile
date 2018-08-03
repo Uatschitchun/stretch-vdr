@@ -9,8 +9,10 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 
 RUN apt-get update -q \
  && apt-get install -y --no-install-recommends \
 	build-essential \
-	git \
+	nano \
+	less \
 	unzip \
+	git \
 	wget \
 	libarchive13 libarchive-dev \
 	zlib1g zlib1g-dev \
