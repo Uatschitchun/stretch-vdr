@@ -16,7 +16,6 @@ RUN apt-get update \
         dirmngr \
         apt-transport-https \
         gnupg \
-#  && locale-gen de_DE.UTF-8 \
   && $_apt_clean
 
 # Set your local timezone
@@ -24,8 +23,6 @@ RUN echo "Europe/Berlin" > /etc/timezone && \
 	dpkg-reconfigure -f noninteractive tzdata
 
 # fix locale.
-#RUN locale-gen de_DE de_DE.UTF-8 && \
-#	dpkg-reconfigure locales
 RUN sed -i '/^#.* de_DE.* /s/^#//' /etc/locale.gen && locale-gen
 
 ENV LANG de_DE.UTF-8
