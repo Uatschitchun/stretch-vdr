@@ -14,6 +14,8 @@ RUN echo Package: * > /etc/apt/preferences.d/etobi \
  && echo Pin: release o=e-tobi.net >> /etc/apt/preferences.d/etobi \
  && echo Pin-Priority: 1000 >> /etc/apt/preferences.d/etobi
 
+RUN sed -i '/^#.* de_DE.* /s/^#//' /etc/locale.gen && locale-gen
+
 RUN apt-get update && \
 	apt-get install --no-install-recommends -y \
 	wget \
