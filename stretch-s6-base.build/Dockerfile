@@ -1,5 +1,5 @@
 ###############################
-# Target: stretch-s6-base                #
+# Target: stretch-s6-base     #
 # Building _stretch-s6-base_  #
 ###############################
 
