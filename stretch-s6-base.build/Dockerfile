@@ -86,6 +86,7 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 
 # Target: build-epgd				        #
 # Using _builder_ image to build vdr-epg-daemon's debs  #
 # Is beeing used as delivery container for debs & logos #
+# targets: vdr-epgd && mariadb-epglv                    #
 #########################################################
 
 FROM builder AS build-epgd
