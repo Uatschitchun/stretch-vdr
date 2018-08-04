@@ -16,10 +16,10 @@ Package-List:
  vdr-epg-daemon deb misc extra arch=all
 Checksums-Sha1:
  ca360f18474c7b5ed0c5b17f7d2340e35a2341d0 1939814 vdr-epg-daemon_1.1.141.orig.tar.gz
- a8f89865368fb6ee3effd32dce347c9b528e7efb 47376 vdr-epg-daemon_1.1.141-1mms0~stretch.debian.tar.xz
+ 8a7c97507f3567b5129390dee78c1b3593fb80ab 47536 vdr-epg-daemon_1.1.141-1mms0~stretch.debian.tar.xz
 Checksums-Sha256:
  a276f6e092192d28d661b624dbb3b9cad1c5f2ca817f6058d402863f9fc46a63 1939814 vdr-epg-daemon_1.1.141.orig.tar.gz
- ee18bb620c253b8ec3fb46c539b02444601e3b394c00d04914078dd675b7b02b 47376 vdr-epg-daemon_1.1.141-1mms0~stretch.debian.tar.xz
+ 4cc5b1b5a9511ff180216ab38483ffa0a8ddaae117f74ab076e8c5c836852cc3 47536 vdr-epg-daemon_1.1.141-1mms0~stretch.debian.tar.xz
 Files:
  cffc92217bc281c384b7d05410d1a8ed 1939814 vdr-epg-daemon_1.1.141.orig.tar.gz
- 24bb9d467aba36159f47ed8134555fdf 47376 vdr-epg-daemon_1.1.141-1mms0~stretch.debian.tar.xz
+ 565d65581c3cba3701e9e2a3881bc23b 47536 vdr-epg-daemon_1.1.141-1mms0~stretch.debian.tar.xz
