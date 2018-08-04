@@ -73,6 +73,7 @@ RUN cd /tmp \
 # Target: vdr-epgd    #
 # Building _vdr-epgd_ #
 #######################
+
 FROM uatschitchun/stretch-s6-base as vdr-epgd
 
 WORKDIR /tmp
@@ -93,18 +94,19 @@ RUN apt-key adv --recv-keys --keyserver keyserver.ubuntu.com 0xF1656F24C74CD1D8 
 # && cp -r channellogos-master/logos-orig/* /var/epgd/www/channellogos/
 COPY --from=build-epgd /var/epgd/www/channellogos/* /var/epgd/www/channellogos/
 
-# !!!!copy over epglv from build-epgd!!!!
-COPY --from=build-epgd /tmp/vdr-epg-daemon/*.deb /tmp/
+# !!!!Do NOT install all debs!!!!
+COPY --from=build-epgd /tmp/vdr-epg-daemon/epgd_*.deb /tmp/
+COPY --from=build-epgd /tmp/vdr-epg-daemon/epghttpd_*.deb /tmp/
 RUN apt install ./*.deb -y --no-install-recommends \
  && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME /epgd/config
 
-#COPY configs/* /epgd/config/
+COPY configs/vdr-epgd/configs/* /epgd/config/
 
 # install runit scripts
-#COPY epgd.sh /etc/services.d/epgd/run
-#COPY epghttpd.sh /etc/services.d/epghttpd/run
+COPY configs/vdr-epgd/epgd.sh /etc/services.d/epgd/run
+COPY configs/vdr-epgd/epghttpd.sh /etc/services.d/epghttpd/run
 
 EXPOSE 8888 9999
 
@@ -115,26 +117,29 @@ EXPOSE 8888 9999
 FROM mariadb:10.3 as mariadb-epglv
 
 WORKDIR /tmp
+ENV ARCH=amd64
 
 RUN apt-get update -q \
- && apt-get install -y locales \
- && echo "Europe/Berlin" > /etc/timezone \
+ && apt-get install -y --no-install-recommends locales
+
+RUN echo "Europe/Berlin" > /etc/timezone \
  && dpkg-reconfigure -f noninteractive tzdata \
- && echo "de_DE.UTF-8 UTF-8" >> /etc/locale.gen; locale-gen
+ && sed -i '/^#.* de_DE.* /s/^#//' /etc/locale.gen && locale-gen
 
 # !!!!copy over epglv from build-epgd!!!!
+COPY --from=build-epgd /tmp/vdr-epg-daemon/mysql-plugin-epglv*.deb /tmp/
+RUN apt install ./*.deb -y --no-install-recommends \
+ && apt-get autoremove -y && apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 ENV LANG de_DE.UTF-8
 ENV LANGUAGE de_DE:de
 ENV LC_ALL de_DE.UTF-8
 
-COPY mysqlepgd.cnf /etc/mysql/conf.d/
-COPY mysql-first-time.sql /docker-entrypoint-initdb.d/
+COPY configs/mariadb-epglv/mysqlepgd.cnf /etc/mysql/conf.d/
+COPY configs/mariadb-epglv/mysql-first-time.sql /docker-entrypoint-initdb.d/
 
 VOLUME /var/lib/mysql
 
-#COPY docker-entrypoint.sh /usr/local/bin/
-#RUN ln -s usr/local/bin/docker-entrypoint.sh / # backwards compat
 ENTRYPOINT ["docker-entrypoint.sh"]
 
 EXPOSE 3306
