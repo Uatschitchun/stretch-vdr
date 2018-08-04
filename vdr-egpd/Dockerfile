@@ -45,6 +45,7 @@ RUN mkdir -p /usr/lib/mysql/plugin \
 RUN cd /tmp \
  && wget https://github.com/FrodoVDR/channellogos/archive/master.tar.gz \
  && tar xzf master.tar.gz \
+ && rm -f master.tar.gz \
  && mkdir -p /var/epgd/www/channellogos \
  && cp -r channellogos-master/logos-orig/* /var/epgd/www/channellogos/
 
