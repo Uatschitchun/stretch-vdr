@@ -1,0 +1,3 @@
+docker run --rm --name database -e MYSQL_ROOT_PASSWORD=ganja -d uatschitchun/mariadb-epglv
+
+
